@@ -3,9 +3,10 @@ import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ExamCountdownCard from '@/components/ExamCountdownCard';
 import SyllabusCard from '@/components/SyllabusCard';
+import ResourceCard from '@/components/ResourceCard';
 import StudyPlannerTodo from '@/components/StudyPlannerTodo';
 import Footer from '@/components/Footer';
-import { Clock, BookOpen, CheckSquare } from 'lucide-react';
+import { Clock, BookOpen, CheckSquare, FolderOpen } from 'lucide-react';
 
 // Exam data with IST timezone target dates
 const exams = [
@@ -81,6 +82,34 @@ const syllabusData = [
   },
 ];
 
+// Study Resources data
+const resourcesData = [
+  {
+    title: 'Group 4 Government Aptitude',
+    description: 'Complete aptitude study material for TNPSC Group 4',
+    category: 'aptitude' as const,
+    pdfUrl: '/pdfs/group4-govt-aptitude.pdf',
+  },
+  {
+    title: 'Group 1 Question Papers (2015-2025)',
+    description: 'Last 10 years solved question papers for Group 1',
+    category: 'question-papers' as const,
+    pdfUrl: '/pdfs/group4-question-papers-2015-2025.pdf',
+  },
+  {
+    title: 'Group 2 Question Papers (2015-2025)',
+    description: 'Last 10 years solved question papers for Group 2',
+    category: 'question-papers' as const,
+    pdfUrl: '/pdfs/group4-question-papers-2015-2025.pdf',
+  },
+  {
+    title: 'Group 4 Question Papers (2015-2025)',
+    description: 'Last 10 years solved question papers for Group 4',
+    category: 'question-papers' as const,
+    pdfUrl: '/pdfs/group4-question-papers-2015-2025.pdf',
+  },
+];
+
 const SectionHeader = ({ 
   icon: Icon, 
   title, 
@@ -142,6 +171,27 @@ const Index = () => {
               <SyllabusCard 
                 key={syllabus.title}
                 {...syllabus}
+                index={index}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Study Resources Section */}
+      <section id="resources" className="py-20 px-4 md:px-8">
+        <div className="container mx-auto">
+          <SectionHeader 
+            icon={FolderOpen}
+            title="Study Resources"
+            subtitle="Access aptitude materials and previous years' question papers"
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {resourcesData.map((resource, index) => (
+              <ResourceCard 
+                key={resource.title}
+                {...resource}
                 index={index}
               />
             ))}
