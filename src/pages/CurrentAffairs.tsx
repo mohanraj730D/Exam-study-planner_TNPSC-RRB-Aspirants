@@ -94,7 +94,7 @@ const currentAffairsData = [
     title: '2026 Central Budget – Current Affairs Questions',
     description: 'Comprehensive collection of important questions and answers based on the 2026 Union Budget. Essential for all competitive exams including TNPSC, SSC, and Banking.',
     icon: FileText,
-    pdfUrl: '/pdfs/2026-central-budget-current-affairs.pdf',
+    pdfUrl: '/pdfs/budget-current-affairs-2026.pdf',
     showViewButton: true,
   },
   {
