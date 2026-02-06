@@ -1,19 +1,39 @@
 import { useState } from 'react';
-import { Menu, X, BookOpen, Clock, CheckSquare, GraduationCap } from 'lucide-react';
+import { Menu, X, BookOpen, Clock, CheckSquare, GraduationCap, Newspaper } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navLinks = [
-    { name: 'Exams', href: '#exams', icon: Clock },
-    { name: 'Syllabus', href: '#syllabus', icon: BookOpen },
-    { name: 'Planner', href: '#planner', icon: CheckSquare },
+    { name: 'Exams', href: '#exams', icon: Clock, isRoute: false },
+    { name: 'Syllabus', href: '#syllabus', icon: BookOpen, isRoute: false },
+    { name: 'Current Affairs', href: '/current-affairs', icon: Newspaper, isRoute: true },
+    { name: 'Planner', href: '#planner', icon: CheckSquare, isRoute: false },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNavClick = (link: typeof navLinks[0]) => {
+    if (link.isRoute) {
+      navigate(link.href);
+    } else {
+      // If we're not on the home page, navigate there first
+      if (location.pathname !== '/') {
+        navigate('/');
+        // Wait for navigation then scroll
+        setTimeout(() => {
+          const element = document.querySelector(link.href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      } else {
+        const element = document.querySelector(link.href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     }
     setIsOpen(false);
   };
@@ -36,7 +56,7 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={() => handleNavClick(link)}
                   className="flex items-center gap-2 px-4 py-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-300"
                 >
                   <link.icon className="w-4 h-4" />
@@ -66,7 +86,7 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <button
                 key={link.name}
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => handleNavClick(link)}
                 className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-300"
               >
                 <link.icon className="w-5 h-5" />
