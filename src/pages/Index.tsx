@@ -6,7 +6,8 @@ import SyllabusCard from '@/components/SyllabusCard';
 import ResourceCard from '@/components/ResourceCard';
 import StudyPlannerTodo from '@/components/StudyPlannerTodo';
 import Footer from '@/components/Footer';
-import { Clock, BookOpen, CheckSquare, FolderOpen } from 'lucide-react';
+import { Clock, BookOpen, CheckSquare, FolderOpen, Brain } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 // Exam data with IST timezone target dates
 const exams = [
@@ -129,6 +130,8 @@ const SectionHeader = ({
 );
 
 const Index = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen relative">
       <AnimatedBackground />
@@ -195,6 +198,38 @@ const Index = () => {
                 index={index}
               />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* MCQ Section */}
+      <section id="mcq" className="py-20 px-4 md:px-8">
+        <div className="container mx-auto">
+          <SectionHeader
+            icon={Brain}
+            title="MCQ Practice"
+            subtitle="Test your knowledge with current affairs multiple choice questions"
+          />
+          <div className="max-w-md mx-auto">
+            <button
+              onClick={() => navigate('/mcq')}
+              className="glass-card-hover p-8 w-full text-left group relative overflow-hidden"
+            >
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl" />
+              <div className="flex items-start gap-4">
+                <div className="p-4 rounded-2xl bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300">
+                  <Brain className="w-8 h-8 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                    Current Affairs MCQ
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    Practice budget & current affairs questions in Tamil or English
+                  </p>
+                </div>
+              </div>
+            </button>
           </div>
         </div>
       </section>
