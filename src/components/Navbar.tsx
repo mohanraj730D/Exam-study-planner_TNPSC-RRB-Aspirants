@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, BookOpen, Clock, CheckSquare, GraduationCap, Newspaper } from 'lucide-react';
+import { Menu, X, BookOpen, Clock, CheckSquare, GraduationCap, Newspaper, Brain } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
@@ -11,6 +11,7 @@ const Navbar = () => {
     { name: 'Exams', href: '#exams', icon: Clock, isRoute: false },
     { name: 'Syllabus', href: '#syllabus', icon: BookOpen, isRoute: false },
     { name: 'Current Affairs', href: '/current-affairs', icon: Newspaper, isRoute: true },
+    { name: 'MCQ', href: '/mcq', icon: Brain, isRoute: true },
     { name: 'Planner', href: '#planner', icon: CheckSquare, isRoute: false },
   ];
 
